@@ -1,24 +1,17 @@
 version: '3.8'
 
 services:
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-      REDIS_URL: redis://redis:6379/0
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      GROQ_API_KEY: ${GROQ_API_KEY}
     env_file:
       - ./backend/.env
     ports:
       - "8000:8000"
-    depends_on:
-      - redis
 
   frontend:
     build:
@@ -27,5 +20,5 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://backend:8000/api/v1
+      NEXT_PUBLIC_API_URL: http://localhost:8000
 
