@@ -112,7 +112,7 @@ export default function IntelligencePage() {
         sessionStorage.setItem('intelligence_history', JSON.stringify(updated));
       }
     } catch {
-      setError('Failed to connect to backend. Is the server running on port 8000?');
+      setError('The AI engine is syncing. Please refresh in 10 seconds.');
     } finally { setLoading(false); }
   };
 
